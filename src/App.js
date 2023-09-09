@@ -10,6 +10,7 @@ const App = () => {
 
   const [courses,setCourses] = useState(null);
   const [loading,setloading] = useState(true);
+  const [category,setCategory] = useState(filterData[0].title);
 
 async function fetchData() {
   setloading(true);
@@ -39,12 +40,14 @@ useEffect(() => {
       <div>
         <Filter
           filterData = {filterData}
+          category={category}
+          setCategory={setCategory}
         />
       </div>
 
       <div className="w-11/12 max-w-[1200px] min-h-[50vh] mx-auto flex flex-wrap justify-center items-center bg-bgDark2">
         {
-          loading ? (<Spinner/>) : (<Cards courses={courses} />)
+          loading ? (<Spinner/>) : (<Cards courses={courses} category={category} />)
         }
       </div>
 
